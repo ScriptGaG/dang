@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 CUSTOM ROBUX GIVEAWAY! 🎁</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0f1923;
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+        .container {
+            background: linear-gradient(145deg, #1a2a3a, #0d1520);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            margin: 50px auto;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 10;
+            border: 1px solid #2a3a4a;
+        }
+        h1 {
+            color: #ff9500;
+            margin: 0;
+            font-size: 28px;
+            text-shadow: 0 2px 5px rgba(255, 149, 0, 0.3);
+        }
+        p {
+            color: #ccc;
+            margin: 10px 0 20px;
+        }
+        input {
+            width: 80%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #2a3a4a;
+            border-radius: 8px;
+            background: #1a2a3a;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+        input:focus {
+            border-color: #ff9500;
+        }
+        button {
+            background: linear-gradient(90deg, #ff9500, #ff5e00);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 94, 0, 0.4);
+            margin: 10px 0;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 94, 0, 0.6);
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #fff;
+        }
+        .robux-icon {
+            font-size: 50px;
+            margin: 10px;
+            color: #ff9500;
+        }
+        .falling-robux {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 149, 0, 0.7);
+            animation: falling linear infinite;
+            z-index: 1;
+        }
+        @keyframes falling {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        .processing {
+            display: none;
+            margin: 20px 0;
+        }
+        .loader {
+            border: 5px solid #2a3a4a;
+            border-top: 5px solid #ff9500;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Falling Robux Animation -->
+    <div id="falling-robux-container"></div>
+
+    <div class="container">
+        <div class="robux-icon">💰</div>
+        <h1>CUSTOM ROBUX GIVEAWAY!</h1>
+        <p>Enter your <strong>Roblox username</strong> and <strong>desired Robux amount</strong> below!</p>
+        
+        <input type="text" id="username" placeholder="Enter your Roblox username..." required>
+        <input type="number" id="robuxAmount" placeholder="Enter Robux amount (e.g., 100)" required>
+        <br>
+        <button onclick="startGiveaway()">🎁 GENERATE ROBUX! 🎁</button>
+        
+        <div id="processing" class="processing">
+            <div class="loader"></div>
+            <p>Generating Robux...</p>
+        </div>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Create falling Robux animation
+        function createFallingRobux() {
+            const container = document.getElementById("falling-robux-container");
+            for (let i = 0; i < 20; i++) {
+                const robux = document.createElement("div");
+                robux.className = "falling-robux";
+                robux.innerHTML = "💰";
+                robux.style.left = Math.random() * 100 + "vw";
+                robux.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                robux.style.animationDelay = Math.random() * 5 + "s";
+                container.appendChild(robux);
+            }
+        }
+        createFallingRobux();
+
+        // Fake processing delay
+        function startGiveaway() {
+            const username = document.getElementById("username").value;
+            const robuxAmount = document.getElementById("robuxAmount").value;
+
+            if (!username || !robuxAmount) {
+                alert("Please enter both your username and Robux amount!");
+                return;
+            }
+
+            document.getElementById("processing").style.display = "block";
+            document.getElementById("result").innerHTML = "";
+
+            // Fake delay (3 seconds)
+            setTimeout(() => {
+                document.getElementById("processing").style.display = "none";
+                showResult(username, robuxAmount);
+            }, 3000);
+        }
+
+        // Show custom Robux result
+        function showResult(username, robux) {
+            document.getElementById("result").innerHTML = `
+                <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px;">
+                    <h2 style="color: #ff9500; margin: 0;">🎉 CONGRATS, ${username.toUpperCase()}! 🎉</h2>
+                    <p>You received: <strong style="color: #ff9500; font-size: 24px;">${parseInt(robux).toLocaleString()} ROBUX!</strong></p>
+                    <p>⚠️ <em>This is a simulation. No real Robux will be awarded.</em></p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
